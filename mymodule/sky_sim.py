@@ -4,8 +4,10 @@ Determine Andromeda location in ra/dec degrees
 from math import cos, pi
 from random import uniform
 # from wikipedia
-RA = '00:42:44.3'
-DEC = '41:16:09'
+
+def generate_sky_pos()
+    RA = '00:42:44.3'
+    DEC = '41:16:09'
 
     # convert to decimal degrees
     d, m, s = DEC.split(':')
