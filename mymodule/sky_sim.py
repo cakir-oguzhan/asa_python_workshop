@@ -9,7 +9,7 @@ def clip_to_radius():
 
 def generate_sky_pos():
     # from wikipedia
-    RA = '00:13:44.3'
+    RA = '00:42:44.3'
     DEC = '41:16:09'
 
     # convert to decimal degrees
