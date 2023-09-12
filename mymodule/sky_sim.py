@@ -3,6 +3,7 @@ Determine Andromeda location in ra/dec degrees
 """
 from math import cos, pi
 from random import uniform
+# from wikipedia
 
 # make 1000 stars within 1 degree of Andromeda
 NSRC = 1000
@@ -57,13 +58,14 @@ def make_stars(ra, dec, nsrc=NSRC):
         decs.append(dec + uniform(-1,1))
 
     # now write these to a csv file for use by my other program
-    #with open('catalog.csv','w') as f:
-    #    print("id,ra,dec", file=f)
-    #    for i in range(NSRC):
-    #        print(f"{i:5d}, {ras[i]:12f}, {decs[i]:12f}", file=f)
+    with open('catalog.csv','w') as f:
+        print("id,ra,dec", file=f)
+        for i in range(NSRC):
+            print(f"{i:5d}, {ras[i]:12f}, {decs[i]:12f}", file=f)
     print(f"{ras[0]} - {decs[0]}")
     print(len(ras))
     return ras, decs
 
 ra, dec = get_radec()
 make_stars(ra, dec)
+
