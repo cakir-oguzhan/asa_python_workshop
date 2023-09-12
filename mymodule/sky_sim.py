@@ -5,7 +5,11 @@ from math import cos, pi
 from random import uniform
 # from wikipedia
 
-def generate_sky_pos()
+def clip_to_radius():
+    pass
+
+def generate_sky_pos():
+    # from wikipedia
     RA = '00:42:44.3'
     DEC = '41:16:09'
 
@@ -17,7 +21,7 @@ def generate_sky_pos()
     ra = 15*(int(h)+int(m)/60+float(s)/3600)
     ra = ra/cos(dec*pi/180)
 
-    NSRC = 1_000_000
+    NSRC = 1000000
 
     # make 1000 stars within 1 degree of Andromeda
     ras = []
