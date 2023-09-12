@@ -3,6 +3,7 @@ Determine Andromeda location in ra/dec degrees
 """
 from math import cos, pi
 from random import uniform
+# from wikipedia
 
 def clip_to_radius():
     pass
