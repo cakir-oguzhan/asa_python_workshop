@@ -132,7 +132,7 @@ def main():
 
     log.info(f"Let's exclude those not within 1 degree radius!")
     ras, decs = clip_to_radius(ra_deg, dec_deg, ras, decs, log=log)
-    log.info(f'There are {len(output_ras)} stars within 1 degree around the given coordinates!')
+    log.info(f'There are {len(ras)} stars within 1 degree around the given coordinates!')
     # now write these to a csv file for use by my other program
     with open(options.out,'w') as f:
         print("id,ra,dec", file=f)
