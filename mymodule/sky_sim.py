@@ -6,6 +6,7 @@ Determine Andromeda location in ra/dec degrees
 from random import uniform
 from math import cos, sin, pi
 import argparse
+import logging
 
 
 NSRC = 1_000
@@ -110,24 +111,50 @@ def skysim_parser():
                         help="Central dec (degrees) for the simulation location")
     parser.add_argument('--out', dest='out', type=str, default='catalog.csv',
                         help='destination for the output catalog')
+    parser.add_argument('--logging', type=str, default="INFO",
+                        help='Logging types (INFO, DEBUG, WARNING, ERROR, CRITICAL)')
     return parser
 
 
 def main():
     parser = skysim_parser()
     options = parser.parse_args()
+
+    loglevels = {
+        'DEBUG' : logging.DEBUG, 
+        'INFO' : logging.INFO,
+        'WARNING' : logging.WARNING,
+        'ERROR' : logging.ERROR,
+        'CRITICAL' : logging.CRITICAL
+    } 
+
+    logging.basicConfig(
+        format="%(name)s:%(levelname)s %(message)s",
+        level=loglevels[options.logging]
+    )
+
+    log = logging.getLogger("<my module>")
     
+    log.info(f'Logging level is defined --> {options.logging}')
+
+
     # if ra/dec are not supplied the use a default value
     if None in [options.ra, options.dec]:
         ra, dec = get_radec()
     else:
         ra = options.ra
         dec = options.dec
+
+    log.info(f'Central RA - DEC = {ra:.3f} - {dec:.3f}')
     
+
+    log.info(f'Now simulating {NSRC} stars around the central coordinates!')
     ras, decs = make_stars(ra,dec)
+
     # now write these to a csv file for use by my other program
     with open(options.out,'w') as f:
         print("id,ra,dec", file=f)
         for i in range(NSRC):
             print(f"{i:07d}, {ras[i]:12f}, {decs[i]:12f}", file=f)
+
     print(f"Wrote {options.out}")
