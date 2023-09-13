@@ -84,7 +84,7 @@ def make_stars(ra, dec, nsrc=NSRC):
     return ras, decs
 
 
-def clip_to_radius(ra, dec, ras, decs): #, log=logging.getLogger("<my module>")
+def clip_to_radius(ra, dec, ras, decs, log=logging.getLogger("sky_sim")
     output_ras = []
     output_decs = []
 
