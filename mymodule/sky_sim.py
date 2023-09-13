@@ -136,7 +136,7 @@ def main():
     # now write these to a csv file for use by my other program
     with open(options.out,'w') as f:
         print("id,ra,dec", file=f)
-        for i in range(NSRC):
+        for i in range(len(ras)):
             print(f"{i:07d}, {ras[i]:12f}, {decs[i]:12f}", file=f)
 
     log.info(f"Wrote {options.out}")
