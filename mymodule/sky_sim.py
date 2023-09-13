@@ -157,4 +157,4 @@ def main():
         for i in range(NSRC):
             print(f"{i:07d}, {ras[i]:12f}, {decs[i]:12f}", file=f)
 
-    print(f"Wrote {options.out}")
+    log.info(f"Wrote {options.out}")
