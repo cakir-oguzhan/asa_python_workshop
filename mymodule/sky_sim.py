@@ -15,8 +15,8 @@ DEC = '41:16:09'
 def get_radec():
     """
     Generate the ra/dec coordinates of Andromeda
-    in decimal degrees.
-    
+    in decimal degrees
+
     Returns
     -------
     ra : float
