@@ -125,7 +125,7 @@ def main():
         dec_deg = options.dec
         log.debug(f"Using ra/dec {ra_deg} {dec_deg}")
 
-    log.info(f'Central RA - DEC = {ra:.3f} - {dec:.3f}')
+    log.info(f'Central RA - DEC = {ra_deg:.3f} - {dec_deg:.3f}')
     
     log.info(f'Now simulating {NSRC} stars within the square centered at the given coordinates!')
     ras, decs = make_stars(ra,dec)
