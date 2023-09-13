@@ -88,15 +88,10 @@ def clip_to_radius(ra, dec, ras, decs): #, log=logging.getLogger("<my module>")
     output_ras = []
     output_decs = []
 
-    log.info(f'Now simulating {NSRC} stars within the square centered at the given coordinates!')
-
-    log.info(f"Let's exclude those not within 1 degree circle!")
     for ra_i, dec_i in zip(ras, decs):
         if ra_i**2 + dec_i**2 < 1:
             output_ras.append(ra_i)
             output_decs.append(dec_i)
-    
-    log.info(f'There are {len(output_ras)} stars within 1 degree around the given coordinates!')
     return output_ras, output_decs
 
 
@@ -121,19 +116,23 @@ def main():
     
     log.info(f'Logging level is defined --> {options.logging}')
 
-
     # if ra/dec are not supplied the use a default value
     if None in [options.ra, options.dec]:
-        ra, dec = get_radec()
+        log.debug("No ra/dec specified, using Andromeda")
+        ra_deg, dec_deg = get_radec()
     else:
-        ra = options.ra
-        dec = options.dec
+        ra_deg = options.ra
+        dec_deg = options.dec
+        log.debug(f"Using ra/dec {ra_deg} {dec_deg}")
 
     log.info(f'Central RA - DEC = {ra:.3f} - {dec:.3f}')
     
+    log.info(f'Now simulating {NSRC} stars within the square centered at the given coordinates!')
     ras, decs = make_stars(ra,dec)
-    ras, decs = clip_to_radius(ra_deg, dec_deg, ras, decs, log=log)
 
+    log.info(f"Let's exclude those not within 1 degree radius!")
+    ras, decs = clip_to_radius(ra_deg, dec_deg, ras, decs, log=log)
+    log.info(f'There are {len(output_ras)} stars within 1 degree around the given coordinates!')
     # now write these to a csv file for use by my other program
     with open(options.out,'w') as f:
         print("id,ra,dec", file=f)
