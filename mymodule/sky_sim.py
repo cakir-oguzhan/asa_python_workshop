@@ -128,7 +128,7 @@ def main():
     log.info(f'Central RA - DEC = {ra_deg:.3f} - {dec_deg:.3f}')
     
     log.info(f'Now simulating {NSRC} stars within the square centered at the given coordinates!')
-    ras, decs = make_stars(ra,dec)
+    ras, decs = make_stars(ra_deg,dec_deg)
 
     log.info(f"Let's exclude those not within 1 degree radius!")
     ras, decs = clip_to_radius(ra_deg, dec_deg, ras, decs, log=log)
@@ -140,3 +140,7 @@ def main():
             print(f"{i:07d}, {ras[i]:12f}, {decs[i]:12f}", file=f)
 
     log.info(f"Wrote {options.out}")
+
+
+if __name__ == "__main__":
+    main()
